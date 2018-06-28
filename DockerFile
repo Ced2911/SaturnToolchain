@@ -1,0 +1,27 @@
+FROM debian:stretch-slim
+
+# volume & workdir
+VOLUME /workspace
+
+# path env...
+ENV TOOLCHAIN_SH2      /toolchain/sh2/
+
+# packet needed
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    git \
+    ninja-build \
+    wget \
+    nodejs \
+    genisoimage
+
+# paths
+COPY sh-elf-gcc-8.1.0-180628.tar.xz sh-elf-gcc-8.1.0-180628.tar.xz
+
+RUN mkdir -p /toolchain/sh2/ && \
+    tar xf sh-elf-gcc-8.1.0-180628.tar.xz -C /toolchain/sh2/ --strip-components=1 && \
+    rm sh-elf-gcc-8.1.0-180628.tar.xz
+
+WORKDIR /workspace
+ENV PATH=/toolchain/sh2/bin:${PATH}
