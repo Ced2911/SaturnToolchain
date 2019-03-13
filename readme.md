@@ -16,6 +16,7 @@ It will generate 2 artifacts:
 see main DockerFile
 ```
 docker run -it --rm --name saturn_toolchain -v d:/saturn/workspace/:/workspace saturn:latest
+docker run -it --rm --name saturn_toolchain -v ${PWD}:/workspace saturntoolchain:latest
 ```
 ### On Windows
 Use sh-elf-gcc-8.1.0-[date].win64.7z, and add bin directory to your %PATH%

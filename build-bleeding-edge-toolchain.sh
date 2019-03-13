@@ -10,15 +10,15 @@
 #
 
 
-binutilsVersion="2.30"
+binutilsVersion="2.32"
 expatVersion="2.2.5"
-gccVersion="8.1.0"
+gccVersion="8.3.0"
 gmpVersion="6.1.2"
 islVersion="0.19"
 libiconvVersion="1.15"
 mpcVersion="1.1.0"
-mpfrVersion="4.0.1"
-newlibVersion="3.0.0.20180226"
+mpfrVersion="4.0.2"
+newlibVersion="3.1.0.20181231"
 pythonVersion="2.7.14"
 zlibVersion="1.2.11"
 
@@ -70,7 +70,7 @@ bold="$(tput bold)"
 normal="$(tput sgr0)"
 
 enableWin32="n"
-enableWin64="y"
+enableWin64="n"
 keepBuildFolders="n"
 
 BASE_CPPFLAGS="-pipe"
@@ -282,7 +282,7 @@ buildGcc() {
 		--disable-nls \
 		--disable-threads \
 		--disable-multilib \
-		--with-cpu=sh2a --with-endian=big \
+		--with-cpu=m2 --with-endian=big \
 		--disable-tls \
 		--with-newlib \
 		--with-gnu-as \
@@ -322,14 +322,10 @@ buildNewlib() {
 	eval "${top}/${sources}/${newlib}/configure \
 		${configureOptions} \
 		--target=${target} \
-		--disable-newlib-supplied-syscalls \
-		--enable-newlib-reent-small \
-		--disable-newlib-fvwrite-in-streamio \
-		--disable-newlib-fseek-optimization \
-		--disable-newlib-wide-orient \
-		--disable-newlib-unbuf-stream-opt \
 		--enable-newlib-global-atexit \
-		--enable-newlib-retargetable-locking \
+		--enable-newlib-nano-formatted-io \
+		--enable-newlib-nano-malloc \
+		--enable-target-optspace \
 		--disable-nls"
 	echo "${bold}---------- ${newlib}${suffix} make${normal}"
 	make -j$(nproc)

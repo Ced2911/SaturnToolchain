@@ -1,27 +1,42 @@
-FROM debian:stretch-slim
+FROM ubuntu:18.10
 
 # volume & workdir
-VOLUME /workspace
+WORKDIR /gccsh2
+VOLUME /home/usr
 
 # path env...
-ENV TOOLCHAIN_SH2      /toolchain/sh2/
+ENV INSTALLDIR      /toolchain
+ENV WD /gccsh2
 
 # packet needed
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    autotools-dev \
+    automake \
     build-essential \
+    bison \
     cmake \
+    curl \
+    flex \
     git \
-    ninja-build \
+    texinfo \
+    tree \
+    parallel \
+	python3-pip \
+    pv \
     wget \
-    nodejs \
-    genisoimage
+	p7zip-full && \
+    rm -rf /var/lib/apt/lists/*
+
+# only for canadian toolchain
+# RUN apt-get install gcc-mingw-w64 g++-mingw-w64 -y
 
 # paths
-COPY sh-elf-gcc-8.1.0-180628.tar.xz sh-elf-gcc-8.1.0-180628.tar.xz
+RUN mkdir -p /toolchain && mkdir -p ${WD}/src && mkdir -p ${WD}/build/binutils && mkdir -p ${WD}/build/gcc
 
-RUN mkdir -p /toolchain/sh2/ && \
-    tar xf sh-elf-gcc-8.1.0-180628.tar.xz -C /toolchain/sh2/ --strip-components=1 && \
-    rm sh-elf-gcc-8.1.0-180628.tar.xz
+COPY build-bleeding-edge-toolchain.sh build-bleeding-edge-toolchain.sh
+RUN ./build-bleeding-edge-toolchain.sh  && cp -r ${WD}/installNative/* /toolchain && rm -rf ${WD}
 
-WORKDIR /workspace
-ENV PATH=/toolchain/sh2/bin:${PATH}
+ENV PATH=/toolchain/bin:${PATH}
+
+#ENTRYPOINT [bash]
