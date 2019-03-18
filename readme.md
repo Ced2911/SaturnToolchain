@@ -1,24 +1,20 @@
 # Sega saturn toolchain
 ## Toolchain
-+ gcc 8.1.0
-+ binutils 2.30
-+ newlib 3.0.0
++ gcc 8.3.0
++ binutils 2.32
++ newlib 3.1.0
+
 ## How to build
-See build/DockerFile
+See DockerFile
 ```
-docker build --rm -f DockerFile -t saturn:latest .
+docker build --rm -f DockerFile -t saturntoolchain:latest .
 ```
-It will generate 2 artifacts:
-+ sh-elf-gcc-8.1.0-[date].tar.xz
-+ sh-elf-gcc-8.1.0-[date].win64.7z
+
 ## How to use
 ### With docker 
-see main DockerFile
 ```
-docker run -it --rm --name saturn_toolchain -v d:/saturn/workspace/:/workspace saturn:latest
 docker run -it --rm --name saturn_toolchain -v ${PWD}:/workspace saturntoolchain:latest
 ```
-### On Windows
-Use sh-elf-gcc-8.1.0-[date].win64.7z, and add bin directory to your %PATH%
 
 ##### Based on https://github.com/FreddieChopin/bleeding-edge-toolchain
+
