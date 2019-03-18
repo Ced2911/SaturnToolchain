@@ -25,6 +25,7 @@ RUN apt-get update && \
 	python3-pip \
     pv \
     wget \
+    genisoimage \
 	p7zip-full && \
     rm -rf /var/lib/apt/lists/*
 
