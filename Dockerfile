@@ -9,8 +9,7 @@ ENV INSTALLDIR      /toolchain
 ENV WD /gccsh2
 
 # packet needed
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     autotools-dev \
     automake \
@@ -28,7 +27,10 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
     wget \
     genisoimage \
     nodejs \
-	p7zip-full && \
+	p7zip-full
+
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
+    apt-get install -y nodejs && \
     rm -rf /var/lib/apt/lists/*
 
 # only for canadian toolchain
