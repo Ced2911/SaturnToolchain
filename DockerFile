@@ -9,7 +9,8 @@ ENV INSTALLDIR      /toolchain
 ENV WD /gccsh2
 
 # packet needed
-RUN apt-get update && \
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
+    apt-get update && \
     apt-get install -y --no-install-recommends \
     autotools-dev \
     automake \
@@ -25,6 +26,8 @@ RUN apt-get update && \
 	python3-pip \
     pv \
     wget \
+    genisoimage \
+    nodejs \
 	p7zip-full && \
     rm -rf /var/lib/apt/lists/*
 
