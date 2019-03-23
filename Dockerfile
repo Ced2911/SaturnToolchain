@@ -40,7 +40,7 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
 RUN mkdir -p /toolchain && mkdir -p ${WD}/src && mkdir -p ${WD}/build/binutils && mkdir -p ${WD}/build/gcc
 
 COPY build-bleeding-edge-toolchain.sh build-bleeding-edge-toolchain.sh
-RUN ./build-bleeding-edge-toolchain.sh  && cp -r ${WD}/installNative/* /toolchain && rm -rf ${WD}
+RUN chmod a+x ./build-bleeding-edge-toolchain.sh && ./build-bleeding-edge-toolchain.sh && cp -r ${WD}/installNative/* /toolchain && rm -rf ${WD}
 
 ENV PATH=/toolchain/bin:${PATH}
 
