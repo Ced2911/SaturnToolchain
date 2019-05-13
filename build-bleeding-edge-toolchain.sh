@@ -12,10 +12,10 @@
 
 binutilsVersion="2.32"
 expatVersion="2.2.5"
-gccVersion="8.3.0"
+gccVersion="9.1.0"
 gmpVersion="6.1.2"
-islVersion="0.19"
-libiconvVersion="1.15"
+islVersion="0.21"
+libiconvVersion="1.16"
 mpcVersion="1.1.0"
 mpfrVersion="4.0.2"
 newlibVersion="3.1.0.20181231"
