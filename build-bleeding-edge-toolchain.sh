@@ -69,7 +69,7 @@ packageArchiveWin64="${package}-win64.7z"
 bold="$(tput bold)"
 normal="$(tput sgr0)"
 
-enableWin32="n"
+enableWin32="y"
 enableWin64="n"
 keepBuildFolders="n"
 

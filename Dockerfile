@@ -34,7 +34,7 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
     rm -rf /var/lib/apt/lists/*
 
 # only for canadian toolchain
-# RUN apt-get install gcc-mingw-w64 g++-mingw-w64 -y
+RUN apt-get install gcc-mingw-w64 g++-mingw-w64 -y
 
 # paths
 RUN mkdir -p /toolchain && mkdir -p ${WD}/src && mkdir -p ${WD}/build/binutils && mkdir -p ${WD}/build/gcc
