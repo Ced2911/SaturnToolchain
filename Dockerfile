@@ -55,7 +55,7 @@ COPY build-crosstool-ng.sh ${WD}/build-crosstool-ng.sh
 COPY saturn.config ${WD}/crosstool-ng/.config
 
 # time to build toolchain
-RUN chmod a+x ${WD}/build-crosstool-ng.sh && ${WD}/build-crosstool-ng.sh
+RUN chmod a+x ${WD}/build-crosstool-ng.sh && ${WD}/build-crosstool-ng.sh && rm -rf ${WD}
 
 # remove work directory
 # RUN rm -rf ${WD}/*
