@@ -29,18 +29,18 @@ RUN apt-get update && \
     nodejs \
 	p7zip-full
 
+# only for canadian toolchain
+RUN apt-get install gcc-mingw-w64 g++-mingw-w64 -y
+
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
     apt-get install -y nodejs && \
     rm -rf /var/lib/apt/lists/*
-
-# only for canadian toolchain
-RUN apt-get install gcc-mingw-w64 g++-mingw-w64 -y
 
 # paths
 RUN mkdir -p /toolchain && mkdir -p ${WD}/src && mkdir -p ${WD}/build/binutils && mkdir -p ${WD}/build/gcc
 
 COPY build-bleeding-edge-toolchain.sh build-bleeding-edge-toolchain.sh
-RUN chmod a+x ./build-bleeding-edge-toolchain.sh && ./build-bleeding-edge-toolchain.sh && cp -r ${WD}/installNative/* /toolchain && rm -rf ${WD}
+RUN chmod a+x ./build-bleeding-edge-toolchain.sh && ./build-bleeding-edge-toolchain.sh && cp -r ${WD}/installNative/* /toolchain
 
 ENV PATH=/toolchain/bin:${PATH}
 
