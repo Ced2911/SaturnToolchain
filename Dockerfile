@@ -26,11 +26,9 @@ RUN apt-get update && \
     pv \
     wget \
     genisoimage \
-    nodejs \
     zlib1g-dev \
-    libtinfo5
-    p7zip-full \
-    libtinfo5
+    libtinfo5 \
+    p7zip-full 
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs && \
