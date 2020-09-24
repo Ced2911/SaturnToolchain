@@ -1,4 +1,4 @@
-FROM ubuntu:20.10
+FROM ubuntu:20.04
 
 # volume & workdir
 WORKDIR /gccsh2
@@ -22,15 +22,17 @@ RUN apt-get update && \
     texinfo \
     tree \
     parallel \
-	python3-pip \
+    python3-pip \
     pv \
     wget \
     genisoimage \
     nodejs \
-	p7zip-full \
-	libtinfo5
+    zlib1g-dev \
+    libtinfo5
+    p7zip-full \
+    libtinfo5
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs && \
     rm -rf /var/lib/apt/lists/*
 
