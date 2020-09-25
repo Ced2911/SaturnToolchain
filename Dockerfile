@@ -8,6 +8,8 @@ VOLUME /home/usr
 ENV INSTALLDIR      /toolchain
 ENV WD /gccsh2
 
+RUN ln -fs /usr/share/zoneinfo/Europe/Paris /etc/localtime
+
 # packet needed
 RUN DEBIAN_FRONTEND="noninteractive" apt-get update && \
     apt-get install -y --no-install-recommends \
